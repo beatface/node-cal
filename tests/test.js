@@ -64,15 +64,4 @@ describe('cal', () => {
 
 
 
-// build a module called zellers   (zellers.modifiedMonth comes from that)
-// require it:
-// const zellers = require('../zellers.js');
-
-// GOAL FOR TODAY:
-// minimum goal is to write a zellers module that will pass these 10 tests. It will have 3 functions.
-
-// LONG TERM GOAL:
-// output current month in the terminal
-
-
 
