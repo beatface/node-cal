@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
 
-console.log('hey');
+console.log('this is cal.js');
