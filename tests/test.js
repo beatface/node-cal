@@ -3,14 +3,14 @@ const { expect } = require('chai');
 const cp = require('child_process');
 
 describe('cal', () => {
-  // describe('CLI', () => {
-  //   it('should handle the current month', () => {
-  //     const goal = cp.execSync('cal').toString();
-  //     const output = cp.execSync('./cal.js').toString();
-
-  //     expect(output).to.equal(goal);
-  //   });
-  // });
+  describe('CLI', () => {
+    it('should handle the current month', () => {
+      const month = require('../lib/month.js');
+      const goal = cp.execSync('cal').toString();
+      // const output = cp.execSync('./cal.js').toString();
+      expect(month.generateMonthView(1, 2016)).to.equal(goal);
+    });
+  });
 
   describe("Zeller's congruence", () => {
     const zellers = require('../lib/zellers.js');
@@ -58,17 +58,6 @@ describe('cal', () => {
       it('returns 2 (Tuesday) for February 2, 2016', () => {
         expect(zellers.getDay(2016, 2, 2)).to.equal(2);
       });
-    });
-
-    describe('.isLeapYear', () => {
-      const month = require('../lib/month.js');
-      it('returns 2016 leap year as true', () => {
-        expect(month.isLeapYear(2016)).to.be.true;
-      });
-      it('returns 2015 leap year as false', () => {
-        expect(month.isLeapYear(2015)).to.be.false;
-      });
-
     });
 
   });

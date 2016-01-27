@@ -6,7 +6,7 @@ var monthView = require('./lib/month.js').generateMonthView;
 const [,, ...args] = process.argv;
 
 if (args.length === 2) {
-	monthView(args[0], args[1]);
+	console.log(monthView(args[0], args[1]));
 } else if (args.length === 1) {
 	// run getyearView
 	console.log("Slow down, I haven't made the year view yet.");
