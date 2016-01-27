@@ -5,18 +5,13 @@ var monthView = require('./lib/month.js').generateMonthView;
 
 const [,, ...args] = process.argv;
 
-monthView(args[0], args[1]);
-
-
-
-// if args.length === 2 {
-// 	const [month, year] = args;
-// 	// run getmonthView
-// 	console.log(`monthView(${month}, ${year})`);
-// } else if args.length === 1 {
-// 	const [year] = args;
-// 	// run getyearView
-// } else {
-// 	log an error
-// process.exit(64);
-// }
+if (args.length === 2) {
+	monthView(args[0], args[1]);
+} else if (args.length === 1) {
+	// run getyearView
+	console.log("Slow down, I haven't made the year view yet.");
+} else {
+	// log an error
+	console.log("You fucked it, bro.");
+	process.exit(64);
+}
