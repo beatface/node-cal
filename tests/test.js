@@ -59,6 +59,18 @@ describe('cal', () => {
         expect(zellers.getDay(2016, 2, 2)).to.equal(2);
       });
     });
+
+    describe('.isLeapYear', () => {
+      const month = require('../lib/month.js');
+      it('returns 2016 leap year as true', () => {
+        expect(month.isLeapYear(2016)).to.be.true;
+      });
+      it('returns 2015 leap year as false', () => {
+        expect(month.isLeapYear(2015)).to.be.false;
+      });
+
+    });
+
   });
 });
 
