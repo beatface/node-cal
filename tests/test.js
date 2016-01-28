@@ -2,22 +2,46 @@
 const { expect } = require('chai');
 const cp = require('child_process');
 
+const month = require('../lib/month.js');
+
 describe('cal', () => {
   describe('CLI', () => {
-    it('should handle the current month', () => {
-      const month = require('../lib/month.js');
-      // month.generateMonthView(1, 2016)
-      const goal = cp.execSync('cal').toString();
-      const output = cp.execSync("./cal.js 1 2016").toString();
-      expect(output).to.equal(goal);
+    // it('should handle the current month', () => {
+    //   const goal = cp.execSync('cal').toString();
+    //   const output = cp.execSync("./cal.js 1 2016").toString();
+    //   expect(output).to.equal(goal);
+    // });
+    // it('should handle feb 2015 month', () => {
+    //   const goal = cp.execSync('cal 2 2015').toString();
+    //   const output = cp.execSync("./cal.js 2 2015").toString();
+    //   expect(output).to.equal(goal);
+    // });
+  });
+
+  describe('CLI individual functions', () => {
+    describe('.validateInputs', () => {
+      it('return invalid for 0, 2015', () => {
+        expect(month.validateInputs(0, 2015)).to.equal("invalid input!");
+      });
+      it('return invalid for 2, 1744', () => {
+        expect(month.validateInputs(2, 1744)).to.equal("invalid input!");
+      });
+      it('return invalid for 5, 10000', () => {
+        expect(month.validateInputs(5, 10000)).to.equal("invalid input!");
+      });
+      it('return valid for 3, 2016', () => {
+        expect(month.validateInputs(3, 2016)).to.equal("valid input!")
+      });
     });
-    it('should handle feb 2015 month', () => {
-      const month = require('../lib/month.js');
-      // month.generateMonthView(1, 2016)
-      const goal = cp.execSync('cal 2 2015').toString();
-      const output = cp.execSync("./cal.js 2 2015").toString();
-      expect(output).to.equal(goal);
+    describe('.headerLines', () => {
+      it('return "    January 2016\nSu Mo Tu We Th Fr Sa\n" for 1, 2016', () => {
+        expect(month.headerLines(1, 2016)).to.equal("    January 2016\nSu Mo Tu We Th Fr Sa\n");
+      });
+      it('return "   February 2016\nSu Mo Tu We Th Fr Sa\n" for 2, 2016', () => {
+        expect(month.headerLines(2, 2016)).to.equal("   February 2016\nSu Mo Tu We Th Fr Sa\n");
+      });
     });
+
   });
 
   describe("Zeller's congruence", () => {
