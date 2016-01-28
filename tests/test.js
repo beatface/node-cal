@@ -3,50 +3,57 @@ const { expect } = require('chai');
 const cp = require('child_process');
 
 const month = require('../lib/month.js');
+const year = require('../lib/year.js');
 
 describe('cal', () => {
   describe('CLI', () => {
-    // it('should handle the current month', () => {
-    //   const goal = cp.execSync('cal').toString();
-    //   const output = cp.execSync("./cal.js 1 2016").toString();
-    //   expect(output).to.equal(goal);
-    // });
-    // it('should handle feb 2015 month', () => {
-    //   const goal = cp.execSync('cal 2 2015').toString();
-    //   const output = cp.execSync("./cal.js 2 2015").toString();
-    //   expect(output).to.equal(goal);
-    // });
+    it('should handle the current month', () => {
+      const goal = cp.execSync('cal').toString();
+      const output = cp.execSync("./cal.js 1 2016").toString();
+      expect(output).to.equal(goal);
+    });
+    it('should handle feb 2015 month', () => {
+      const goal = cp.execSync('cal 2 2015').toString();
+      const output = cp.execSync("./cal.js 2 2015").toString();
+      expect(output).to.equal(goal);
+    });
   });
 
   describe('CLI individual functions', () => {
-    describe('.validateInputs', () => {
-      it('return invalid for 0, 2015', () => {
-        expect(month.validateInputs(0, 2015)).to.equal("invalid input!");
-      });
-      it('return invalid for 2, 1744', () => {
-        expect(month.validateInputs(2, 1744)).to.equal("invalid input!");
-      });
-      it('return invalid for 5, 10000', () => {
-        expect(month.validateInputs(5, 10000)).to.equal("invalid input!");
-      });
-      it('return valid for 3, 2016', () => {
-        expect(month.validateInputs(3, 2016)).to.equal("valid input!")
-      });
-    });
-    describe('.headerLines', () => {
-      it('return "    January 2016\nSu Mo Tu We Th Fr Sa\n" for 1, 2016', () => {
-        expect(month.headerLines(1, 2016)).to.equal("    January 2016\nSu Mo Tu We Th Fr Sa\n");
+    // describe('.validateInputs', () => {
+    //   it('return invalid for 0, 2015', () => {
+    //     expect(month.validateInputs(0, 2015)).to.equal("invalid input!");
+    //   });
+    //   it('return invalid for 2, 1744', () => {
+    //     expect(month.validateInputs(2, 1744)).to.equal("invalid input!");
+    //   });
+    //   it('return invalid for 5, 10000', () => {
+    //     expect(month.validateInputs(5, 10000)).to.equal("invalid input!");
+    //   });
+    //   it('return valid for 3, 2016', () => {
+    //     expect(month.validateInputs(3, 2016)).to.equal("valid input!")
+    //   });
+    // });
+    describe('.headerLine', () => {
+      it('return "    January 2016" for 1, 2016', () => {
+        expect(month.headerLine(1, 2016)).to.equal("    January 2016");
       });
       it('return "   February 2016\nSu Mo Tu We Th Fr Sa\n" for 2, 2016', () => {
-        expect(month.headerLines(2, 2016)).to.equal("   February 2016\nSu Mo Tu We Th Fr Sa\n");
+        expect(month.headerLine(2, 2016)).to.equal("   February 2016");
       });
     });
     describe('.numberLines', () => {
       it('return correct string for for 1, 2016', () => {
-        expect(month.numberLines(1, 2016)).to.equal("                1  2\n 3  4  5  6  7  8  9\n10 11 12 13 14 15 16\n17 18 19 20 21 22 23\n24 25 26 27 28 29 30\n31\n");
+        expect(month.numberLines(1, 2016)).to.equal("                1  2\n 3  4  5  6  7  8  9\n10 11 12 13 14 15 16\n17 18 19 20 21 22 23\n24 25 26 27 28 29 30\n31");
       });
       it('return correct string for 2, 2016', () => {
-        expect(month.numberLines(2, 2016)).to.equal("    1  2  3  4  5  6\n 7  8  9 10 11 12 13\n14 15 16 17 18 19 20\n21 22 23 24 25 26 27\n28 29\n\n");
+        expect(month.numberLines(2, 2016)).to.equal("    1  2  3  4  5  6\n 7  8  9 10 11 12 13\n14 15 16 17 18 19 20\n21 22 23 24 25 26 27\n28 29\n");
+      });
+    });
+    describe('.getEachMonth', () => {
+      it('return string of ALL MONTHS', () => {
+        expect(year.getEachMonth(2016)).to.equal("    January 2016\nSu Mo Tu We Th Fr Sa\n                1  2\n 3  4  5  6  7  8  9\n10 11 12 13 14 15 16\n17 18 19 20 21 22 23\n24 25 26 27 28 29 30\n31\n   February 2016\nSu Mo Tu We Th Fr Sa\n    1  2  3  4  5  6\n 7  8  9 10 11 12 13\n14 15 16 17 18 19 20\n21 22 23 24 25 26 27\n28 29\n\n     March 2016\nSu Mo Tu We Th Fr Sa\n       1  2  3  4  5\n 6  7  8  9 10 11 12\n13 14 15 16 17 18 19\n20 21 22 23 24 25 26\n27 28 29 30 31\n\n     April 2016\nSu Mo Tu We Th Fr Sa\n                1  2\n 3  4  5  6  7  8  9\n10 11 12 13 14 15 16\n17 18 19 20 21 22 23\n24 25 26 27 28 29 30\n\n      May 2016\nSu Mo Tu We Th Fr Sa\n 1  2  3  4  5  6  7\n 8  9 10 11 12 13 14\n15 16 17 18 19 20 21\n22 23 24 25 26 27 28\n29 30 31\n\n     June 2016\nSu Mo Tu We Th Fr Sa\n          1  2  3  4\n 5  6  7  8  9 10 11\n12 13 14 15 16 17 18\n19 20 21 22 23 24 25\n26 27 28 29 30\n\n     July 2016\nSu Mo Tu We Th Fr Sa\n                1  2\n 3  4  5  6  7  8  9\n10 11 12 13 14 15 16\n17 18 19 20 21 22 23\n24 25 26 27 28 29 30\n31\n    August 2016\nSu Mo Tu We Th Fr Sa\n    1  2  3  4  5  6\n 7  8  9 10 11 12 13\n14 15 16 17 18 19 20\n21 22 23 24 25 26 27\n28 29 30 31\n\n   September 2016\nSu Mo Tu We Th Fr Sa\n             1  2  3\n 4  5  6  7  8  9 10\n11 12 13 14 15 16 17\n18 19 20 21 22 23 24\n25 26 27 28 29 30\n\n    October 2016\nSu Mo Tu We Th Fr Sa\n                   1\n 2  3  4  5  6  7  8\n 9 10 11 12 13 14 15\n16 17 18 19 20 21 22\n23 24 25 26 27 28 29\n30 31\n   November 2016\nSu Mo Tu We Th Fr Sa\n       1  2  3  4  5\n 6  7  8  9 10 11 12\n13 14 15 16 17 18 19\n20 21 22 23 24 25 26\n27 28 29 30\n\n   December 2016\nSu Mo Tu We Th Fr Sa\n             1  2  3\n 4  5  6  7  8  9 10\n11 12 13 14 15 16 17\n18 19 20 21 22 23 24\n25 26 27 28 29 30 31\n\n");
+
       });
     });
 
