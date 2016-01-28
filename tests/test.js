@@ -41,6 +41,14 @@ describe('cal', () => {
         expect(month.headerLines(2, 2016)).to.equal("   February 2016\nSu Mo Tu We Th Fr Sa\n");
       });
     });
+    describe('.numberLines', () => {
+      it('return correct string for for 1, 2016', () => {
+        expect(month.numberLines(1, 2016)).to.equal("                1  2\n 3  4  5  6  7  8  9\n10 11 12 13 14 15 16\n17 18 19 20 21 22 23\n24 25 26 27 28 29 30\n31\n");
+      });
+      it('return correct string for 2, 2016', () => {
+        expect(month.numberLines(2, 2016)).to.equal("    1  2  3  4  5  6\n 7  8  9 10 11 12 13\n14 15 16 17 18 19 20\n21 22 23 24 25 26 27\n28 29\n\n");
+      });
+    });
 
   });
 
