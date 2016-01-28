@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --harmony_destructuring
 "use strict";
 
 var monthView = require('./lib/month.js').generateMonthView;

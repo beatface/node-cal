@@ -6,9 +6,17 @@ describe('cal', () => {
   describe('CLI', () => {
     it('should handle the current month', () => {
       const month = require('../lib/month.js');
+      // month.generateMonthView(1, 2016)
       const goal = cp.execSync('cal').toString();
-      // const output = cp.execSync('./cal.js').toString();
-      expect(month.generateMonthView(1, 2016)).to.equal(goal);
+      const output = cp.execSync("./cal.js 1 2016").toString();
+      expect(output).to.equal(goal);
+    });
+    it('should handle feb 2015 month', () => {
+      const month = require('../lib/month.js');
+      // month.generateMonthView(1, 2016)
+      const goal = cp.execSync('cal 2 2015').toString();
+      const output = cp.execSync("./cal.js 2 2015").toString();
+      expect(output).to.equal(goal);
     });
   });
 
