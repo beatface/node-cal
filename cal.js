@@ -15,7 +15,7 @@ if (args.length === 2) {
 		console.log(`${month.headerLine(m, y)}\n${month.subheaderLine(m, y)}\n${month.numberLines(m, y)}`);
 	}
 } else if (args.length === 1) {
-	// console.log("the arg is:", args[0]);
+	var headerYear = `${" ".repeat(30)}${args[0]}`;
 	// run getyearView
 	var em = year.getEachMonth(args[0]);
 	// console.log("em", em);
@@ -23,9 +23,10 @@ if (args.length === 2) {
 	// console.log("as", as);
 	var sl = year.splitLines(as);
 	// console.log("sl", sl);
-	var mc = year.monthChunks(sl);
+	var cl = year.checkLength(sl)
+	var mc = year.monthChunks(cl);
 	var output = year.outputYear(mc);
-	console.log(output);
+	console.log(`${headerYear}\n${output}`);
 	// console.log("Slow down, I haven't made the year view yet.");
 } else {
 	// log an error
