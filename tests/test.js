@@ -17,23 +17,19 @@ describe('cal', () => {
       const output = cp.execSync("./cal.js 2 2015").toString();
       expect(output).to.equal(goal);
     });
+    it('should handle 2016 year', () => {
+      const goal = cp.execSync('cal 2016').toString();
+      const output = cp.execSync("./cal.js 2016").toString();
+      expect(output).to.equal(goal);
+    });
+    it('should handle a full year 1886', () => {
+      const goal = cp.execSync('cal 1886').toString().split("\n");
+      const output = cp.execSync('./cal.js 1886').toString().split("\n");
+      expect(output[0]).to.equal(goal[0]);
+    });
   });
 
   describe('CLI individual functions', () => {
-    // describe('.validateInputs', () => {
-    //   it('return invalid for 0, 2015', () => {
-    //     expect(month.validateInputs(0, 2015)).to.equal("invalid input!");
-    //   });
-    //   it('return invalid for 2, 1744', () => {
-    //     expect(month.validateInputs(2, 1744)).to.equal("invalid input!");
-    //   });
-    //   it('return invalid for 5, 10000', () => {
-    //     expect(month.validateInputs(5, 10000)).to.equal("invalid input!");
-    //   });
-    //   it('return valid for 3, 2016', () => {
-    //     expect(month.validateInputs(3, 2016)).to.equal("valid input!")
-    //   });
-    // });
     describe('.headerLine', () => {
       it('return "    January 2016" for 1, 2016', () => {
         expect(month.headerLine(1, 2016)).to.equal("    January 2016");
