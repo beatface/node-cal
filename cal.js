@@ -15,9 +15,18 @@ if (args.length === 2) {
 		console.log(`${month.headerLine(m, y)}\n${month.subheaderLine(m, y)}\n${month.numberLines(m, y)}`);
 	}
 } else if (args.length === 1) {
+	console.log("the arg is:", args[0]);
 	// run getyearView
-	// console.log(year.stuff());
-	console.log("Slow down, I haven't made the year view yet.");
+	var em = year.getEachMonth(args[0]);
+	console.log("em", em);
+	var as = year.addSpaces(em);
+	console.log("as", as);
+	var sl = year.splitLines(as);
+	console.log("sl", sl);
+	var mc = year.monthChunks(sl);
+	var output = year.outputYear(mc);
+	console.log(output);
+	// console.log("Slow down, I haven't made the year view yet.");
 } else {
 	// log an error
 	console.log("You fucked it, bro.");
