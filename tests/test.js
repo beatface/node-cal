@@ -68,6 +68,10 @@ describe('cal', () => {
       expect(arr[0].length).to.equal(20);
       expect(arr[14].length).to.equal(20);
     });
+    it('should create year header line', () => {
+      expect(year.yearHeaderLine(1)).to.equal('      January');
+      expect(year.yearHeaderLine(5)).to.equal('        May');
+    });
   });
 
   describe("Zeller's congruence", () => {
