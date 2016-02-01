@@ -9,22 +9,22 @@ describe('cal', () => {
   describe('CLI', () => {
     it('should handle the current month', () => {
       const goal = cp.execSync('cal').toString();
-      const output = cp.execSync("./cal.js 1 2016").toString();
+      const output = cp.execSync("./loader.js 2 2016").toString();
       expect(output).to.equal(goal);
     });
     it('should handle feb 2015 month', () => {
       const goal = cp.execSync('cal 2 2015').toString();
-      const output = cp.execSync("./cal.js 2 2015").toString();
+      const output = cp.execSync("./loader.js 2 2015").toString();
       expect(output).to.equal(goal);
     });
     it('should handle 2016 year', () => {
       const goal = cp.execSync('cal 2016').toString();
-      const output = cp.execSync("./cal.js 2016").toString();
+      const output = cp.execSync("./loader.js 2016").toString();
       expect(output).to.equal(goal);
     });
     it('should handle a full year 1886', () => {
       const goal = cp.execSync('cal 1886').toString().split("\n");
-      const output = cp.execSync('./cal.js 1886').toString().split("\n");
+      const output = cp.execSync('./loader.js 1886').toString().split("\n");
       expect(output[0]).to.equal(goal[0]);
     });
   });
